@@ -1,0 +1,20 @@
+<?php 
+	session_start();
+	include('functions.php');
+	$token = generateToken();
+	$_SESSION['token']= $token;
+	echo $_SESSION['token'];
+?>
+<html>
+<body>
+<form action="spi.php" method="post">
+
+<p>Post ID to delete:</p>
+<p><input type="text" name="post_id" /></p>
+
+<input type="hidden" name="token" value="<?php echo $token; ?>" />
+<input type="submit" />
+</body>
+</form>
+</html>
+
