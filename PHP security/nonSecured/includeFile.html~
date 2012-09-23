@@ -1,0 +1,10 @@
+<html>
+  <head>
+     <body>
+        <form action="includeFile.php" method="GET">
+            <input type ="text" name="fname">
+            <input type=submit value=Press>	
+        </form>
+     </body>
+  </head>
+</html>

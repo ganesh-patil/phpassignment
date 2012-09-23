@@ -1,0 +1,31 @@
+-<?php
+  
+       $hostname = 'localhost';
+       $username = 'root';
+       $password = 'ganesh';
+    try {
+          
+          $dbh = new PDO("mysql:host=$hostname;dbname=phpDatabase", $username, $password);       //creation of new PDO object
+            echo "</br></br>Connected to database<br/>";
+
+         
+          $name = "' ' OR 1";                                      //in name field bad name is stored; 
+          $sql = "SELECT * FROM student where s_name=$name";       //mysql query. always true .
+          echo "Normal: " . $sql . "<br />";
+          foreach($dbh->query($sql) as $row)
+           {
+             
+             print $row['s_id'] .' - '. $row['s_name'] . '<br />';
+           }
+
+         $name_evil = "'; DELETE FROM student WHERE 1 or s_name = '"; //in name field another bad query is stored  
+         $query_evil = "SELECT * FROM student WHERE s_name = '$name_evil'";
+         echo "Injection: " . $query_evil;
+         $qresult=$dbh->query($query_evil);                          //execution of bad query.
+       
+        }
+    catch(PDOException $e)
+       {
+         echo $e->getMessage();
+       }
+?>

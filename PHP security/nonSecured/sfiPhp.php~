@@ -1,0 +1,4 @@
+<?php
+  $gender=$_GET['gender'];
+  echo "Gender is :: $gender";
+?>
