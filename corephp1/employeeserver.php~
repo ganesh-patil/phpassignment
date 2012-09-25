@@ -1,8 +1,13 @@
 <?php
-
+if(isset($_POST) && !empty($_POST)) {
+print "<pre>";
+print_r($_POST);
+print "</pre>";
+}
     //echo $_POST['etechnology'];
    // echo $_FILES['upfile']['name'];
    // echo $_FILES['upfile']['tmp_name'];
+   $id=$_POST['id'];
    $name= $_POST['name'];
    $age =$_POST['age'];
    $gender=$_POST['gender'];
@@ -11,6 +16,8 @@
    $pincode=$_POST['pincode'];
    $description=$_POST['description']; 
    $etechnology=$_POST['etechnology'];
+//   echo $id;
+   //$id=5;
  /* echo $_POST['name'];
   echo $_POST['age'];
   echo $_POST['gender']; */
@@ -69,7 +76,7 @@ class employee
   function fileUpload()
   {
      echo "in fileupload";
-            $uploaddir = '/home/webonise/Projects/php/App2012/corephp/photos';
+            $uploaddir = '/home/webonise/uploads/';
            $uploadfile = $uploaddir . basename($_FILES['upfile']['name']);
 
         echo '<pre>';
@@ -87,7 +94,7 @@ class employee
  {
  
     //echo "insert value";
-    $sql="INSERT INTO
+   /* $sql="INSERT INTO
      employees(
      name,
      age,
@@ -105,7 +112,9 @@ class employee
      '{$address}',
      '{$pincode}',
      '{$filepath}',
-     '{$technology}')"; 
+     '{$technology}')"; */
+     $sql = 'UPDATE employees
+        SET name="'.$name.'",age='.$age.',gender="'.$gender.'",email="'.$email.'",address="'.$address.'",pin='.$pincode.',picture="'.$filepath.'",technology="'.$technology.'" WHERE id='.$id.' ';
      
    /* $sql="insert into employees(name,age,gender,email,address,pin,picture,technology) values('Ganesh1',23,'male','patil.ganesh170@gmail.com','pandharpur',413315,'/abc','c')"; */
       mysql_query($sql,$con);
@@ -119,7 +128,7 @@ class employee
 $emp=new employee();
 $filepath=$emp->fileupload();
 $con=$emp->startConnection();
-$emp->insertvalue($con,$_FILES['upfile']['name'],$name,$age,$gender,$email,$address,$pincode,$etechnology);
+$emp->insertvalue($con,$filepath,$name,$age,$gender,$email,$address,$pincode,$etechnology);
   
 
 ?>

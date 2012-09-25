@@ -1,8 +1,13 @@
 <?php
-
+if(isset($_POST) && !empty($_POST)) {
+print "<pre>";
+print_r($_POST);
+print "</pre>";
+}
     //echo $_POST['etechnology'];
    // echo $_FILES['upfile']['name'];
    // echo $_FILES['upfile']['tmp_name'];
+   $id=$_GET['id'];
    $name= $_POST['name'];
    $age =$_POST['age'];
    $gender=$_POST['gender'];
@@ -11,6 +16,8 @@
    $pincode=$_POST['pincode'];
    $description=$_POST['description']; 
    $etechnology=$_POST['etechnology'];
+//   echo $id;
+   //$id=5;
  /* echo $_POST['name'];
   echo $_POST['age'];
   echo $_POST['gender']; */
@@ -66,60 +73,22 @@ class employee
     return $con;
   }
   
-  function fileUpload()
-  {
-     echo "in fileupload";
-            $uploaddir = '/home/webonise/Projects/php/App2012/corephp/photos';
-           $uploadfile = $uploaddir . basename($_FILES['upfile']['name']);
-
-        echo '<pre>';
-         if (move_uploaded_file($_FILES['upfile']['tmp_name'], $uploadfile)) {
-          echo "File is valid, and was successfully uploaded.\n";
-        } 
-       else {
-           echo "Possible file upload attack!\n";
-         }
-
-      return $uploadfile;  
-  }
  
- function insertvalue($con,$filepath,$name,$age,$gender,$email,$address,$pincode,$technology)
+ function deleterecord($id,$con)
  {
- 
-    //echo "insert value";
-    $sql="INSERT INTO
-     employees(
-     name,
-     age,
-     gender,
-     email,
-     address,
-     pin,
-     picture,
-     technology)
-     VALUES(
-     '{$name}',
-     '{$age}',
-     '{$gender}',
-     '{$email}',
-     '{$address}',
-     '{$pincode}',
-     '{$filepath}',
-     '{$technology}')"; 
-     
-   /* $sql="insert into employees(name,age,gender,email,address,pin,picture,technology) values('Ganesh1',23,'male','patil.ganesh170@gmail.com','pandharpur',413315,'/abc','c')"; */
-      mysql_query($sql,$con);
-  //   mysql_query($sql,$con);
-     
-     //echo "after insaert";
- }   
+    echo "delete is $id";
+    $sql = 'DELETE FROM employees
+        WHERE id='.$id.'';
+        mysql_query($sql,$con);
+ }
   
 }
 
 $emp=new employee();
-$filepath=$emp->fileupload();
+
 $con=$emp->startConnection();
-$emp->insertvalue($con,$_FILES['upfile']['name'],$name,$age,$gender,$email,$address,$pincode,$etechnology);
+//$emp->insertvalue($id,$con,$filepath,$name,$age,$gender,$email,$address,$pincode,$etechnology);
+$emp->deleterecord($id,$con);
   
 
 ?>
