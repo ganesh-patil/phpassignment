@@ -1,6 +1,9 @@
 <h1>Blog Albums</h1>
 <?php echo $this->Html->link('Add Album', array('controller' => 'albums', 'action' => 'add')); ?>
+<?php echo "<br/>"?>
 <?php echo $this->Html->link('Show tags', array('controller' => 'tags', 'action' => 'index')); ?>
+<?php echo "<br/>"?>
+<?php echo $this->Html->link('Show Artists', array('controller' => 'artists', 'action' => 'index')); ?>
 <!--<?php  pr($this->request->data); ?> -->
 <table>
     <tr>
@@ -28,7 +31,7 @@
         {
           //if($artist['AlbumsArtist']['album_id']==$album['Album']['id'])
          // {
-          echo $artist['Artist']['name'];
+          echo $this->Html->link($artist['Artist']['name'],array('controller' => 'artists','action' => 'view',$artist['Artist']['id']));
           echo "<br/>";
          // }
         } 

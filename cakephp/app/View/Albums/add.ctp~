@@ -32,9 +32,13 @@ echo $this->Form->input('metadescription');
 echo $this->Form->input('isfeatured');
 //echo $this->Form->input('artist_id');
 //echo $this->Form->input('tag_id');
-
-//echo $this->Form->checkbox('Artist', array('value' => 'Y','hiddenField' => 'N',));
-
+foreach ($artists as $artist)
+{
+echo $this->Form->checkbox($artist['Artist']['id'], array('value' => $artist['Artist']['id']));
+echo $artist['Artist']['name'];
+echo "<br/>";
+}
+/*
 echo " Artist:<br/>";
 foreach ($artists as $artist)
         {
@@ -50,8 +54,8 @@ foreach ($tags as $tag)
           echo '<input type="checkbox" name="'.$tag['Tag']['name'].'" value="'.$tag['Tag']['id'].'">'.$tag['Tag']['name'].'<br>';
           echo "<br/>";
         }   
-
-echo $this->Form->end('Save Post');
+*/
+echo $this->Form->end('Save Album');
 
 ?>
 </body>
