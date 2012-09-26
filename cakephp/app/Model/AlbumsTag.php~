@@ -1,0 +1,16 @@
+<?php
+class AlbumsTag extends AppModel {
+    public $name = 'AlbumsTag';
+    
+    public $belongsTo = array(
+        'Album' => array(
+            'className'    => 'Album',
+            'foreignKey'   => 'album_id'
+        ),
+        'Artist' => array(
+            'className'    => 'Artist',
+            'foreignKey'   => 'artist_id'
+        )
+    );
+    
+    }

@@ -1,0 +1,20 @@
+<?php
+// define $authorized = true only if user is authenticated
+ $authorised=false;
+ function authenticated_user()
+{
+   //logic to check user is authenticated or not ;
+   echo "in function ";
+  return false;
+}
+if (authenticated_user()) {
+    $authorized = true;
+}
+
+if ($authorized) {
+    echo "in true";
+   // include "/highly/sensitive/data.php";
+}
+echo "out";
+?>
+

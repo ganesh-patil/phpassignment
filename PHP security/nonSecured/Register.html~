@@ -1,0 +1,11 @@
+<html>
+<head>
+  <body>
+   <form action="ragisterGlobal.php" method="post">
+       <!-- <input type="text" name="gender" id="gender" /> <br /> -->
+	<input type="submit">
+           
+   </form>
+  <body>
+</head>
+</html>
